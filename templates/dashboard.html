@@ -1,0 +1,37 @@
+<h1>Analytics Dashboard</h1>
+
+<p>Total Students: {{ total_students }}</p>
+<p>Average Score: {{ avg_score }}</p>
+
+{% if top_student %}
+<p>Top Student: {{ top_student[0] }} ({{ top_student[1] }})</p>
+{% endif %}
+
+<h2>Student Performance Chart</h2>
+
+<canvas id="myChart" width="400" height="200"></canvas>
+
+<canvas id="myChart"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+fetch('/chart-data')
+.then(response => response.json())
+.then(data => {
+    new Chart(document.getElementById('myChart'), {
+        type: 'bar',
+        data: {
+            labels: data.labels,
+            datasets: [{
+                label: 'Average Scores',
+                data: data.values
+            }]
+        }
+    });
+});
+</script>
+
+<a href="/download_pdf">
+    <button>Download PDF Report</button>
+</a>

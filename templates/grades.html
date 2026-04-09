@@ -1,0 +1,25 @@
+<h2>All Grades</h2>
+
+<a href="/grades/add">Add Grade</a>
+
+<table border="1">
+<tr>
+    <th>ID</th><th>Student</th><th>Unit</th><th>Score</th><th>Actions</th>
+</tr>
+
+{% for g in grades %}
+<tr>
+    <td>{{ g[0] }}</td>
+    <td>{{ g[1] }}</td>
+    <td>{{ g[2] }}</td>
+    <td>{{ g[3] }}</td>
+    <td>
+        <a href="/grades/{{ g[0] }}/edit">Edit</a>
+
+        <form action="/grades/{{ g[0] }}/delete" method="POST" style="display:inline;">
+            <button onclick="return confirm('Delete?')">Delete</button>
+        </form>
+    </td>
+</tr>
+{% endfor %}
+</table>

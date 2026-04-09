@@ -1,0 +1,23 @@
+<h2>Add Grade</h2>
+
+<form method="POST">
+
+    Student:
+    <select name="student_id">
+        {% for s in students %}
+        <option value="{{ s[0] }}">{{ s[1] }}</option>
+        {% endfor %}
+    </select><br><br>
+
+    Unit:
+    <select name="unit_id">
+        {% for u in units %}
+        <option value="{{ u[0] }}">{{ u[1] }}</option>
+        {% endfor %}
+    </select><br><br>
+
+    Score:
+    <input type="number" name="score"><br><br>
+
+    <button type="submit">Save</button>
+</form>
